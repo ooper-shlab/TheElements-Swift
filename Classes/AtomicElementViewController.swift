@@ -97,7 +97,7 @@ class AtomicElementViewController: UIViewController {
         
         let flipButtonBarItem = UIBarButtonItem(customView: self.flipIndicatorButton)
         self.flipIndicatorButton.addTarget(self,
-            action: "flipCurrentView",
+            action: #selector(AtomicElementViewController.flipCurrentView),
             forControlEvents: UIControlEvents.TouchDown)
         self.navigationItem.setRightBarButtonItem(flipButtonBarItem, animated: true)
     }
@@ -112,7 +112,7 @@ class AtomicElementViewController: UIViewController {
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationDuration(kFlipTransitionDuration)
         UIView.setAnimationDelegate(self)
-        UIView.setAnimationDidStopSelector("myTransitionDidStop:finished:context:")
+        UIView.setAnimationDidStopSelector(#selector(AtomicElementViewController.myTransitionDidStop(_:finished:context:)))
         
         // swap the views and transition
         if self.frontViewIsVisible {
@@ -139,7 +139,7 @@ class AtomicElementViewController: UIViewController {
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationDuration(kFlipTransitionDuration)
         UIView.setAnimationDelegate(self)
-        UIView.setAnimationDidStopSelector("myTransitionDidStop:finished:context:")
+        UIView.setAnimationDidStopSelector(#selector(AtomicElementViewController.myTransitionDidStop(_:finished:context:)))
         
         if self.frontViewIsVisible {
             UIView.setAnimationTransition(.FlipFromRight, forView: self.flipIndicatorButton, cache: true)

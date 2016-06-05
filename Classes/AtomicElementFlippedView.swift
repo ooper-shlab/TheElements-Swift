@@ -35,7 +35,7 @@ class AtomicElementFlippedView: AtomicElementView {
         self.wikipediaButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
         self.wikipediaButton.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
         
-        self.wikipediaButton.addTarget(self, action: "jumpToWikipedia:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.wikipediaButton.addTarget(self, action: #selector(AtomicElementFlippedView.jumpToWikipedia(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.addSubview(self.wikipediaButton)
     }

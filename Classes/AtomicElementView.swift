@@ -40,7 +40,7 @@ class AtomicElementView: UIView {
         
         // attach a tap gesture recognizer to this view so it can flip
         let tapGestureRecognizer =
-        UITapGestureRecognizer(target: self, action: "tapAction:")
+        UITapGestureRecognizer(target: self, action: #selector(AtomicElementView.tapAction(_:)))
         self.addGestureRecognizer(tapGestureRecognizer)
     }
     
