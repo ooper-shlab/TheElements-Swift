@@ -27,7 +27,7 @@ class AtomicElementTableViewCell: UITableViewCell {
     // we implement this because the table cell values need to be updated when this property
     // changes, and this allows for the changes to be encapsulated
     //
-    private func didSetElement(anElement: AtomicElement?) {
+    private func didSetElement(_ anElement: AtomicElement?) {
         
         let elementTileView = self.contentView.viewWithTag(1) as! AtomicElementTileView
         elementTileView.element = element

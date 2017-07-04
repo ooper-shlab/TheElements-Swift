@@ -35,7 +35,7 @@ class AtomicElement: NSObject {
     private var horizPos: Int
     private var radioactive: Bool = false
     
-    init(dictionary aDictionary: [String: AnyObject]) {
+    init(dictionary aDictionary: [String: Any]) {
         
         self.atomicNumber = aDictionary["atomicNumber"]! as! Int
         self.atomicWeight = aDictionary["atomicWeight"]! as! String
@@ -56,7 +56,7 @@ class AtomicElement: NSObject {
     // this returns the position of the element in the classic periodic table locations
     private var positionForElement: CGPoint {
         
-        return CGPointMake(CGFloat(horizPos)*26 - 8, CGFloat(vertPos)*26 + 35)
+        return CGPoint(x: CGFloat(horizPos)*26 - 8, y: CGFloat(vertPos)*26 + 35)
         
     }
     
@@ -78,31 +78,31 @@ class AtomicElement: NSObject {
         // return a 30 x 30 image that is a reduced version
         // of the AtomicElementTileView content
         // this is used to display the flipper button in the navigation bar
-        let itemSize = CGSizeMake(30.0, 30.0)
+        let itemSize = CGSize(width: 30.0, height: 30.0)
         UIGraphicsBeginImageContext(itemSize)
         
         let backgroundImage = UIImage(named: "\(self.state)_30.png")!
-        let elementSymbolRectangle = CGRectMake(0, 0, itemSize.width, itemSize.height)
-        backgroundImage.drawInRect(elementSymbolRectangle)
+        let elementSymbolRectangle = CGRect(x: 0, y: 0, width: itemSize.width, height: itemSize.height)
+        backgroundImage.draw(in: elementSymbolRectangle)
         
         // draw the element name
-        UIColor.whiteColor().set()
+        UIColor.white.set()
         
         // draw the element number
-        var font: [String: AnyObject] = [NSFontAttributeName: UIFont.boldSystemFontOfSize(8)]
-        var point = CGPointMake(2, 1)
-        (String(atomicNumber) as NSString).drawAtPoint(point, withAttributes: font)
+        var font: [String: AnyObject] = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 8)]
+        var point = CGPoint(x: 2, y: 1)
+        String(atomicNumber).draw(at: point, withAttributes: font)
         
         // draw the element symbol
-        font = [NSFontAttributeName: UIFont.boldSystemFontOfSize(13)]
-        let stringSize = (self.symbol as NSString).sizeWithAttributes(font)
-        point = CGPointMake((elementSymbolRectangle.size.width-stringSize.width)/2, 10)
+        font = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 13)]
+        let stringSize = self.symbol.size(attributes: font)
+        point = CGPoint(x: (elementSymbolRectangle.size.width-stringSize.width)/2, y: 10)
         
-        (self.symbol as NSString).drawAtPoint(point, withAttributes: font)
+        self.symbol.draw(at: point, withAttributes: font)
         
         let theImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return theImage
+        return theImage!
     }
     
 }

@@ -24,7 +24,7 @@ class TheElementsAppDelegate: NSObject, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // for each tableview 'screen' we need to create a datasource instance
         // (the class that is passed in) we then need to create an instance of
@@ -46,29 +46,29 @@ class TheElementsAppDelegate: NSObject, UIApplicationDelegate {
         // we will create 3 more instances of it, and assign each it's own kind data source
         
         // by name
-        var navController = storyboard.instantiateViewControllerWithIdentifier("navForTableView") as! UINavigationController
+        var navController = storyboard.instantiateViewController(withIdentifier: "navForTableView") as! UINavigationController
         var viewController =
         navController.topViewController as! ElementsTableViewController
-        var dataSource: protocol<ElementsDataSource, UITableViewDataSource> = ElementsSortedByNameDataSource()
+        var dataSource: ElementsDataSource & UITableViewDataSource = ElementsSortedByNameDataSource()
         viewController.dataSource = dataSource
         viewControllers.append(navController)
         
         // by atomic number
-        navController = storyboard.instantiateViewControllerWithIdentifier("navForTableView") as! UINavigationController
+        navController = storyboard.instantiateViewController(withIdentifier: "navForTableView") as! UINavigationController
         viewController = navController.topViewController as! ElementsTableViewController
         dataSource = ElementsSortedByAtomicNumberDataSource()
         viewController.dataSource = dataSource
         viewControllers.append(navController)
         
         // by symbol
-        navController = storyboard.instantiateViewControllerWithIdentifier("navForTableView") as! UINavigationController
+        navController = storyboard.instantiateViewController(withIdentifier: "navForTableView") as! UINavigationController
         viewController = navController.topViewController as! ElementsTableViewController
         dataSource = ElementsSortedBySymbolDataSource()
         viewController.dataSource = dataSource
         viewControllers.append(navController)
         
         // by state
-        navController = storyboard.instantiateViewControllerWithIdentifier("navForTableView") as! UINavigationController
+        navController = storyboard.instantiateViewController(withIdentifier: "navForTableView") as! UINavigationController
         viewController = navController.topViewController as! ElementsTableViewController
         dataSource = ElementsSortedByStateDataSource()
         viewController.dataSource = dataSource

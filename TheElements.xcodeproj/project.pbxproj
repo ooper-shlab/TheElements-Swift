@@ -15,20 +15,20 @@
 		535A1E6016CEA30F00B7A289 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535A1E5E16CEA30F00B7A289 /* MainStoryboard.storyboard */; };
 		53A3E91216CDB118001BE75B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A3E91116CDB118001BE75B /* UIKit.framework */; };
 		C8657C240D59017B00CB6FC9 /* Elements.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8657C230D59017B00CB6FC9 /* Elements.plist */; };
-		D71329E61B918E7000C3124C /* AtomicElementTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329E51B918E7000C3124C /* AtomicElementTileView.swift */; settings = {ASSET_TAGS = (); }; };
-		D71329E81B9190D900C3124C /* AtomicElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329E71B9190D900C3124C /* AtomicElementTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		D71329EA1B91921F00C3124C /* ElementsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329E91B91921F00C3124C /* ElementsDataSource.swift */; settings = {ASSET_TAGS = (); }; };
-		D71329EC1B9192CE00C3124C /* ElementsSortedByNameDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329EB1B9192CE00C3124C /* ElementsSortedByNameDataSource.swift */; settings = {ASSET_TAGS = (); }; };
-		D71329EE1B9196A300C3124C /* ElementsSortedByAtomicNumberDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329ED1B9196A300C3124C /* ElementsSortedByAtomicNumberDataSource.swift */; settings = {ASSET_TAGS = (); }; };
-		D71329F01B91984600C3124C /* ElementsSortedBySymbolDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329EF1B91984600C3124C /* ElementsSortedBySymbolDataSource.swift */; settings = {ASSET_TAGS = (); }; };
-		D71329F21B91997600C3124C /* ElementsSortedByStateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329F11B91997600C3124C /* ElementsSortedByStateDataSource.swift */; settings = {ASSET_TAGS = (); }; };
-		D71329F61B91A15900C3124C /* ElementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329F31B919E4900C3124C /* ElementsTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		D71329F81B91A1ED00C3124C /* TheElementsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329F71B91A1ED00C3124C /* TheElementsAppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
-		D76C36831B91525000DAFB27 /* AtomicElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76C36821B91525000DAFB27 /* AtomicElement.swift */; settings = {ASSET_TAGS = (); }; };
-		D76C36851B9157F000DAFB27 /* PeriodicElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76C36841B9157F000DAFB27 /* PeriodicElements.swift */; settings = {ASSET_TAGS = (); }; };
-		D7A77EC51B916E58005D1ED2 /* AtomicElementFlippedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A77EC41B916E58005D1ED2 /* AtomicElementFlippedView.swift */; settings = {ASSET_TAGS = (); }; };
-		D7A77EC71B916E9B005D1ED2 /* AtomicElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A77EC61B916E9B005D1ED2 /* AtomicElementView.swift */; settings = {ASSET_TAGS = (); }; };
-		D7A77EC91B916F13005D1ED2 /* AtomicElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A77EC81B916F13005D1ED2 /* AtomicElementViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		D71329E61B918E7000C3124C /* AtomicElementTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329E51B918E7000C3124C /* AtomicElementTileView.swift */; };
+		D71329E81B9190D900C3124C /* AtomicElementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329E71B9190D900C3124C /* AtomicElementTableViewCell.swift */; };
+		D71329EA1B91921F00C3124C /* ElementsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329E91B91921F00C3124C /* ElementsDataSource.swift */; };
+		D71329EC1B9192CE00C3124C /* ElementsSortedByNameDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329EB1B9192CE00C3124C /* ElementsSortedByNameDataSource.swift */; };
+		D71329EE1B9196A300C3124C /* ElementsSortedByAtomicNumberDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329ED1B9196A300C3124C /* ElementsSortedByAtomicNumberDataSource.swift */; };
+		D71329F01B91984600C3124C /* ElementsSortedBySymbolDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329EF1B91984600C3124C /* ElementsSortedBySymbolDataSource.swift */; };
+		D71329F21B91997600C3124C /* ElementsSortedByStateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329F11B91997600C3124C /* ElementsSortedByStateDataSource.swift */; };
+		D71329F61B91A15900C3124C /* ElementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329F31B919E4900C3124C /* ElementsTableViewController.swift */; };
+		D71329F81B91A1ED00C3124C /* TheElementsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71329F71B91A1ED00C3124C /* TheElementsAppDelegate.swift */; };
+		D76C36831B91525000DAFB27 /* AtomicElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76C36821B91525000DAFB27 /* AtomicElement.swift */; };
+		D76C36851B9157F000DAFB27 /* PeriodicElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76C36841B9157F000DAFB27 /* PeriodicElements.swift */; };
+		D7A77EC51B916E58005D1ED2 /* AtomicElementFlippedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A77EC41B916E58005D1ED2 /* AtomicElementFlippedView.swift */; };
+		D7A77EC71B916E9B005D1ED2 /* AtomicElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A77EC61B916E9B005D1ED2 /* AtomicElementView.swift */; };
+		D7A77EC91B916F13005D1ED2 /* AtomicElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A77EC81B916F13005D1ED2 /* AtomicElementViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -252,6 +252,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						LastSwiftMigration = 0830;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TheElements" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -351,6 +356,7 @@
 				PRODUCT_NAME = TheElements;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -376,6 +382,7 @@
 				PRODUCT_NAME = TheElements;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

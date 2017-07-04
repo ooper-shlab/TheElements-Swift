@@ -41,11 +41,11 @@ class ElementsSortedByAtomicNumberDataSource: NSObject, UITableViewDataSource, E
     // atomic number is displayed in a plain style tableview
     var tableViewStyle: UITableViewStyle {
         
-        return .Plain
+        return .plain
     }
     
     // return the atomic element at the index in the sorted by numbers array
-    func atomicElementForIndexPath(indexPath: NSIndexPath) -> AtomicElement? {
+    func atomicElementForIndexPath(_ indexPath: IndexPath) -> AtomicElement? {
         
         return PeriodicElements.sharedPeriodicElements.elementsSortedByNumber[indexPath.row]
     }
@@ -53,10 +53,10 @@ class ElementsSortedByAtomicNumberDataSource: NSObject, UITableViewDataSource, E
     
     //MARK: - UITableViewDataSource
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell =
-        tableView.dequeueReusableCellWithIdentifier("AtomicElementTableViewCell") as! AtomicElementTableViewCell
+        tableView.dequeueReusableCell(withIdentifier: "AtomicElementTableViewCell") as! AtomicElementTableViewCell
         
         // set the element for this cell as specified by the datasource. The atomicElementForIndexPath: is declared
         // as part of the ElementsDataSource Protocol and will return the appropriate element for the index row
@@ -66,13 +66,13 @@ class ElementsSortedByAtomicNumberDataSource: NSObject, UITableViewDataSource, E
         return cell
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         // this table has only one section
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // get the shared elements object
         // ask for, and return, the number of elements in the array of elements sorted by number

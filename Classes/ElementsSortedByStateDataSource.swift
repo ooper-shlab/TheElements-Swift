@@ -41,11 +41,11 @@ class ElementsSortedByStateDataSource: NSObject, UITableViewDataSource, Elements
     // atomic state is displayed in a grouped style tableview
     var tableViewStyle: UITableViewStyle {
         
-        return .Plain
+        return .plain
     }
     
     // return the atomic element at the index
-    func atomicElementForIndexPath(indexPath: NSIndexPath) -> AtomicElement? {
+    func atomicElementForIndexPath(_ indexPath: IndexPath) -> AtomicElement? {
         
         // this table has multiple sections. One for each physical state
         // [solid, liquid, gas, artificial]
@@ -62,10 +62,10 @@ class ElementsSortedByStateDataSource: NSObject, UITableViewDataSource, Elements
     
     //MARK: - UITableViewDataSource
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell =
-        tableView.dequeueReusableCellWithIdentifier("AtomicElementTableViewCell")! as! AtomicElementTableViewCell
+        tableView.dequeueReusableCell(withIdentifier: "AtomicElementTableViewCell")! as! AtomicElementTableViewCell
         
         // set the element for this cell as specified by the datasource. The atomicElementForIndexPath: is declared
         // as part of the ElementsDataSource Protocol and will return the appropriate element for the index row
@@ -75,7 +75,7 @@ class ElementsSortedByStateDataSource: NSObject, UITableViewDataSource, Elements
         return cell
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         // this table has multiple sections. One for each physical state
         // [solid, liquid, gas, artificial]
@@ -84,7 +84,7 @@ class ElementsSortedByStateDataSource: NSObject, UITableViewDataSource, Elements
         return PeriodicElements.sharedPeriodicElements.elementPhysicalStatesArray.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // this table has multiple sections. One for each physical state
         // [solid, liquid, gas, artificial]
@@ -96,7 +96,7 @@ class ElementsSortedByStateDataSource: NSObject, UITableViewDataSource, Elements
         return PeriodicElements.sharedPeriodicElements.elementsWithPhysicalState(stateKey)!.count
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         // this table has multiple sections. One for each physical state
         

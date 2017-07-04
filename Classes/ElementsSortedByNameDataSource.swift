@@ -42,11 +42,11 @@ class ElementsSortedByNameDataSource: NSObject, UITableViewDataSource, ElementsD
     
     var tableViewStyle: UITableViewStyle {
         
-        return .Plain
+        return .plain
     }
     
     // return the atomic element at the index
-    func atomicElementForIndexPath(indexPath: NSIndexPath) -> AtomicElement? {
+    func atomicElementForIndexPath(_ indexPath: IndexPath) -> AtomicElement? {
         
         return PeriodicElements.sharedPeriodicElements.elementsWithInitialLetter(PeriodicElements.sharedPeriodicElements.elementNameIndexArray[indexPath.section])![indexPath.row]
     }
@@ -54,9 +54,9 @@ class ElementsSortedByNameDataSource: NSObject, UITableViewDataSource, ElementsD
     
     //MARK: - UITableViewDataSource
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =
-        tableView.dequeueReusableCellWithIdentifier("AtomicElementTableViewCell")! as! AtomicElementTableViewCell
+        tableView.dequeueReusableCell(withIdentifier: "AtomicElementTableViewCell")! as! AtomicElementTableViewCell
         
         // set the element for this cell as specified by the datasource. The atomicElementForIndexPath: is declared
         // as part of the ElementsDataSource Protocol and will return the appropriate element for the index row
@@ -66,7 +66,7 @@ class ElementsSortedByNameDataSource: NSObject, UITableViewDataSource, ElementsD
         return cell
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         // this table has multiple sections. One for each unique character that an element begins with
         // [A,B,C,D,E,F,G,H,I,K,L,M,N,O,P,R,S,T,U,V,X,Y,Z]
@@ -74,19 +74,19 @@ class ElementsSortedByNameDataSource: NSObject, UITableViewDataSource, ElementsD
         return PeriodicElements.sharedPeriodicElements.elementNameIndexArray.count
     }
     
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         
         // returns the array of section titles. There is one entry for each unique character that an element begins with
         // [A,B,C,D,E,F,G,H,I,K,L,M,N,O,P,R,S,T,U,V,X,Y,Z]
         return PeriodicElements.sharedPeriodicElements.elementNameIndexArray
     }
     
-    func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         
         return index
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // the section represents the initial letter of the element
         // return that letter
@@ -99,7 +99,7 @@ class ElementsSortedByNameDataSource: NSObject, UITableViewDataSource, ElementsD
         return elementsWithInitialLetter.count
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         // this table has multiple sections. One for each unique character that an element begins with
         // [A,B,C,D,E,F,G,H,I,K,L,M,N,O,P,R,S,T,U,V,X,Y,Z]

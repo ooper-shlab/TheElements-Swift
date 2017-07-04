@@ -51,8 +51,8 @@ class PeriodicElements: NSObject {
         self.statesDictionary[.Artificial] = []
         
         // read the element data from the plist
-        let theURL = NSBundle.mainBundle().URLForResource("Elements", withExtension: "plist")!
-        let rawElementsArray = NSArray(contentsOfURL: theURL)! as! [[String : AnyObject]]
+        let theURL = Bundle.main.url(forResource: "Elements", withExtension: "plist")!
+        let rawElementsArray = NSArray(contentsOf: theURL)! as! [[String : Any]]
         
         // iterate over the values in the raw elements dictionary
         for eachElement in rawElementsArray {
@@ -66,7 +66,7 @@ class PeriodicElements: NSObject {
             self.statesDictionary[anElement.state]?.append(anElement)
             
             // get the element's initial letter
-            let firstLetter = anElement.name.substringToIndex(anElement.name.startIndex.successor())
+            let firstLetter = anElement.name.substring(to: anElement.name.characters.index(after: anElement.name.startIndex))
             if self.nameIndexesDictionary[firstLetter] != nil {
                 
                 // if an array already exists in the name index dictionary
@@ -93,7 +93,7 @@ class PeriodicElements: NSObject {
     }
     
     // return the array of elements for the requested physical state
-    func elementsWithPhysicalState(aState: ElementState) -> [AtomicElement]? {
+    func elementsWithPhysicalState(_ aState: ElementState) -> [AtomicElement]? {
         
         return self.statesDictionary[aState]
     }
@@ -106,15 +106,15 @@ class PeriodicElements: NSObject {
         }
     }
     
-    private func presortElementsWithPhysicalState(state: ElementState) {
+    private func presortElementsWithPhysicalState(_ state: ElementState) {
         
-        self.statesDictionary[state]!.sortInPlace{
-            $0.name.compare($1.name, options: .CaseInsensitiveSearch, range: nil, locale: NSLocale.currentLocale()) == .OrderedAscending
+        self.statesDictionary[state]!.sort{
+            $0.name.compare($1.name, options: .caseInsensitive, range: nil, locale: Locale.current) == .orderedAscending
         }
     }
     
     // return an array of elements for an initial letter (ie A, B, C, ...)
-    func elementsWithInitialLetter(aKey: String) -> [AtomicElement]? {
+    func elementsWithInitialLetter(_ aKey: String) -> [AtomicElement]? {
         
         return self.nameIndexesDictionary[aKey]
     }
@@ -122,25 +122,25 @@ class PeriodicElements: NSObject {
     // presort the name index arrays so the elements are in the correct order
     private func presortElementInitialLetterIndexes() {
         
-        self.elementNameIndexArray = self.nameIndexesDictionary.keys.sort {
-            $0.compare($1, options: .CaseInsensitiveSearch, range: nil, locale: NSLocale.currentLocale()) == .OrderedAscending
+        self.elementNameIndexArray = self.nameIndexesDictionary.keys.sorted {
+            $0.compare($1, options: .caseInsensitive, range: nil, locale: Locale.current) == .orderedAscending
         }
         for eachNameIndex in self.elementNameIndexArray {
             self.presortElementNamesForInitialLetter(eachNameIndex)
         }
     }
     
-    private func presortElementNamesForInitialLetter(aKey: String) {
+    private func presortElementNamesForInitialLetter(_ aKey: String) {
         
-        self.nameIndexesDictionary[aKey]!.sortInPlace{
-            $0.name.compare($1.name, options: .CaseInsensitiveSearch, range: nil, locale: NSLocale.currentLocale()) == .OrderedAscending
+        self.nameIndexesDictionary[aKey]!.sort{
+            $0.name.compare($1.name, options: .caseInsensitive, range: nil, locale: Locale.current) == .orderedAscending
         }
     }
     
     // presort the elementsSortedByNumber array
     private func presortElementsByNumber() -> [AtomicElement] {
         
-        let sortedElements = self.elementsDictionary.values.sort {
+        let sortedElements = self.elementsDictionary.values.sorted {
             $0.atomicNumber < $1.atomicNumber
         }
         return sortedElements
@@ -149,8 +149,8 @@ class PeriodicElements: NSObject {
     // presort the elementsSortedBySymbol array
     private func presortElementsBySymbol() -> [AtomicElement] {
         
-        let sortedElements = self.elementsDictionary.values.sort{
-            $0.symbol.compare($1.symbol, options: .CaseInsensitiveSearch, range: nil, locale: NSLocale.currentLocale()) == .OrderedAscending
+        let sortedElements = self.elementsDictionary.values.sorted{
+            $0.symbol.compare($1.symbol, options: .caseInsensitive, range: nil, locale: Locale.current) == .orderedAscending
         }
         return sortedElements
     }

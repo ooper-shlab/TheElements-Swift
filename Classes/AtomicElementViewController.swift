@@ -43,10 +43,10 @@ class AtomicElementViewController: UIViewController {
         
         let preferredAtomicElementViewSize = AtomicElementView.preferredViewSize()
         
-        let viewRect = CGRectMake((CGRectGetWidth(self.view.bounds) - preferredAtomicElementViewSize.width)/2,
-            (CGRectGetHeight(self.view.bounds) - preferredAtomicElementViewSize.height)/2 - 40,
-            preferredAtomicElementViewSize.width,
-            preferredAtomicElementViewSize.height)
+        let viewRect = CGRect(x: (self.view.bounds.width - preferredAtomicElementViewSize.width)/2,
+            y: (self.view.bounds.height - preferredAtomicElementViewSize.height)/2 - 40,
+            width: preferredAtomicElementViewSize.width,
+            height: preferredAtomicElementViewSize.height)
         
         
         // create the atomic element view
@@ -71,16 +71,16 @@ class AtomicElementViewController: UIViewController {
         var reflectionRect = viewRect
         
         // the reflection is a fraction of the size of the view being reflected
-        reflectionRect.size.height = CGRectGetHeight(reflectionRect) * reflectionFraction
+        reflectionRect.size.height = reflectionRect.height * reflectionFraction
         
         // and is offset to be at the bottom of the view being reflected
-        reflectionRect = CGRectOffset(reflectionRect, 0, CGRectGetHeight(viewRect))
+        reflectionRect = reflectionRect.offsetBy(dx: 0, dy: viewRect.height)
         
         let localReflectionImageView = UIImageView(frame: reflectionRect)
         self.reflectionView = localReflectionImageView
         
         // determine the size of the reflection to create
-        let reflectionHeight = Int(CGRectGetHeight(self.atomicElementView.bounds) * reflectionFraction)
+        let reflectionHeight = Int(self.atomicElementView.bounds.height * reflectionFraction)
         
         // create the reflection image, assign it to the UIImageView and add the image view to the view controller's view
         self.reflectionView.image = self.atomicElementView.reflectedImageRepresentationWithHeight(reflectionHeight)
@@ -89,47 +89,47 @@ class AtomicElementViewController: UIViewController {
         self.view.addSubview(self.reflectionView)
         
         // setup our flip indicator button (placed as a nav bar item to the right)
-        let localFlipIndicator = UIButton(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
+        let localFlipIndicator = UIButton(frame: CGRect(x: 0.0, y: 0.0, width: 30.0, height: 30.0))
         self.flipIndicatorButton = localFlipIndicator
         
         // front view is always visible at first
-        self.flipIndicatorButton.setBackgroundImage(UIImage(named: "flipper_list_blue.png"), forState: .Normal)
+        self.flipIndicatorButton.setBackgroundImage(UIImage(named: "flipper_list_blue.png"), for: UIControlState())
         
         let flipButtonBarItem = UIBarButtonItem(customView: self.flipIndicatorButton)
         self.flipIndicatorButton.addTarget(self,
             action: #selector(AtomicElementViewController.flipCurrentView),
-            forControlEvents: UIControlEvents.TouchDown)
-        self.navigationItem.setRightBarButtonItem(flipButtonBarItem, animated: true)
+            for: UIControlEvents.touchDown)
+        self.navigationItem.setRightBarButton(flipButtonBarItem, animated: true)
     }
     
     func flipCurrentView() {
         
         // disable user interaction during the flip animation
-        self.view.userInteractionEnabled = false
-        self.flipIndicatorButton.userInteractionEnabled = false
+        self.view.isUserInteractionEnabled = false
+        self.flipIndicatorButton.isUserInteractionEnabled = false
         
         // setup the animation group
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationDuration(kFlipTransitionDuration)
         UIView.setAnimationDelegate(self)
-        UIView.setAnimationDidStopSelector(#selector(AtomicElementViewController.myTransitionDidStop(_:finished:context:)))
+        UIView.setAnimationDidStop(#selector(AtomicElementViewController.myTransitionDidStop(_:finished:context:)))
         
         // swap the views and transition
         if self.frontViewIsVisible {
-            UIView.setAnimationTransition(.FlipFromRight, forView: self.view, cache: true)
+            UIView.setAnimationTransition(.flipFromRight, for: self.view, cache: true)
             self.atomicElementView.removeFromSuperview()
             self.view.addSubview(self.atomicElementFlippedView)
             
             // update the reflection image for the new view
-            let reflectionHeight = Int(CGRectGetHeight(self.atomicElementFlippedView.bounds) * reflectionFraction)
+            let reflectionHeight = Int(self.atomicElementFlippedView.bounds.height * reflectionFraction)
             let reflectedImage = self.atomicElementFlippedView.reflectedImageRepresentationWithHeight(reflectionHeight)
             reflectionView.image = reflectedImage
         } else {
-            UIView.setAnimationTransition(.FlipFromLeft, forView: self.view, cache: true)
+            UIView.setAnimationTransition(.flipFromLeft, for: self.view, cache: true)
             self.atomicElementFlippedView.removeFromSuperview()
             self.view.addSubview(self.atomicElementView)
             // update the reflection image for the new view
-            let reflectionHeight = Int(CGRectGetHeight(self.atomicElementView.bounds) * reflectionFraction)
+            let reflectionHeight = Int(self.atomicElementView.bounds.height * reflectionFraction)
             let reflectedImage = self.atomicElementView.reflectedImageRepresentationWithHeight(reflectionHeight)
             reflectionView.image = reflectedImage
         }
@@ -139,14 +139,14 @@ class AtomicElementViewController: UIViewController {
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationDuration(kFlipTransitionDuration)
         UIView.setAnimationDelegate(self)
-        UIView.setAnimationDidStopSelector(#selector(AtomicElementViewController.myTransitionDidStop(_:finished:context:)))
+        UIView.setAnimationDidStop(#selector(AtomicElementViewController.myTransitionDidStop(_:finished:context:)))
         
         if self.frontViewIsVisible {
-            UIView.setAnimationTransition(.FlipFromRight, forView: self.flipIndicatorButton, cache: true)
-            self.flipIndicatorButton.setBackgroundImage(self.element?.flipperImageForAtomicElementNavigationItem, forState: .Normal)
+            UIView.setAnimationTransition(.flipFromRight, for: self.flipIndicatorButton, cache: true)
+            self.flipIndicatorButton.setBackgroundImage(self.element?.flipperImageForAtomicElementNavigationItem, for: UIControlState())
         } else {
-            UIView.setAnimationTransition(.FlipFromLeft, forView: self.flipIndicatorButton, cache: true)
-            self.flipIndicatorButton.setBackgroundImage(UIImage(named: "flipper_list_blue.png"), forState: .Normal)
+            UIView.setAnimationTransition(.flipFromLeft, for: self.flipIndicatorButton, cache: true)
+            self.flipIndicatorButton.setBackgroundImage(UIImage(named: "flipper_list_blue.png"), for: UIControlState())
             
         }
         UIView.commitAnimations()
@@ -155,10 +155,10 @@ class AtomicElementViewController: UIViewController {
         self.frontViewIsVisible = !self.frontViewIsVisible
     }
     
-    func myTransitionDidStop(animationID: String, finished: NSNumber, context: UnsafeMutablePointer<Void>) {
+    func myTransitionDidStop(_ animationID: String, finished: NSNumber, context: UnsafeMutableRawPointer) {
         // re-enable user interaction when the flip animation is completed
-        self.view.userInteractionEnabled = true
-        self.flipIndicatorButton.userInteractionEnabled = true
+        self.view.isUserInteractionEnabled = true
+        self.flipIndicatorButton.isUserInteractionEnabled = true
     }
     
 }

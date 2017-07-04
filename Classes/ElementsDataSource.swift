@@ -31,10 +31,10 @@ protocol ElementsDataSource: NSObjectProtocol {
     // provides a standardized means of asking for the element at the specific
     // index path, regardless of the sorting or display technique for the specific
     // datasource
-    func atomicElementForIndexPath(indexPath: NSIndexPath) -> AtomicElement?
+    func atomicElementForIndexPath(_ indexPath: IndexPath) -> AtomicElement?
     
     // this optional protocol allows us to send the datasource this message, since it has the
     // required information
-    optional func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    @objc optional func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     
 }

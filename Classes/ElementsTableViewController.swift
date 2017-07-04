@@ -18,12 +18,12 @@ import UIKit
 @objc(ElementsTableViewController)
 class ElementsTableViewController: UITableViewController {
     
-    var dataSource: protocol<ElementsDataSource, UITableViewDataSource>? {
+    var dataSource: (ElementsDataSource & UITableViewDataSource)? {
         didSet {didSetDataSource(oldValue)}
     }
     
     
-    private func didSetDataSource(oldDataSource: protocol<ElementsDataSource, UITableViewDataSource>?) {
+    private func didSetDataSource(_ oldDataSource: (ElementsDataSource & UITableViewDataSource)?) {
         
         // retain the data source
         
@@ -54,7 +54,7 @@ class ElementsTableViewController: UITableViewController {
     
     //MARK: - UITableViewDelegate
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "showDetail" {
             
@@ -63,7 +63,7 @@ class ElementsTableViewController: UITableViewController {
             // find the right view controller
             let element = self.dataSource?.atomicElementForIndexPath(selectedIndexPath)
             let viewController =
-            segue.destinationViewController as! AtomicElementViewController
+            segue.destination as! AtomicElementViewController
             
             // hide the bottom tabbar when we push this view controller
             viewController.hidesBottomBarWhenPushed = true
