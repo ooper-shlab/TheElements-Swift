@@ -54,7 +54,7 @@ class AtomicElementView: UIView {
         return true
     }
     
-    func tapAction(_ gestureRecognizer: UIGestureRecognizer) {
+    @objc func tapAction(_ gestureRecognizer: UIGestureRecognizer) {
         
         // when a tap gesture occurs tell the view controller to flip this view to the
         // back and show the AtomicElementFlippedView instead
@@ -75,19 +75,19 @@ class AtomicElementView: UIView {
         UIColor.white.set()
         
         // draw the element name
-        var font = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 36)]
-        var stringSize = element.name.size(attributes: font)
+        var font: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 36)]
+        var stringSize = element.name.size(withAttributes: font)
         var point = CGPoint(x: (self.bounds.size.width-stringSize.width)/2, y: 256/2-50)
         element.name.draw(at: point, withAttributes: font)
         
         // draw the element number
-        font = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 48)]
+        font = [.font: UIFont.boldSystemFont(ofSize: 48)]
         point = CGPoint(x: 10,y: 0)
         String(element.atomicNumber).draw(at: point, withAttributes: font)
         
         // draw the element symbol
-        font = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 96)]
-        stringSize = element.symbol.size(attributes: font)
+        font = [.font: UIFont.boldSystemFont(ofSize: 96)]
+        stringSize = element.symbol.size(withAttributes: font)
         point = CGPoint(x: (self.bounds.size.width-stringSize.width)/2,y: 256-120)
         element.symbol.draw(at: point, withAttributes: font)
     }

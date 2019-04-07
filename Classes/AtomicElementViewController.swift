@@ -93,16 +93,16 @@ class AtomicElementViewController: UIViewController {
         self.flipIndicatorButton = localFlipIndicator
         
         // front view is always visible at first
-        self.flipIndicatorButton.setBackgroundImage(UIImage(named: "flipper_list_blue.png"), for: UIControlState())
+        self.flipIndicatorButton.setBackgroundImage(UIImage(named: "flipper_list_blue.png"), for: .normal)
         
         let flipButtonBarItem = UIBarButtonItem(customView: self.flipIndicatorButton)
         self.flipIndicatorButton.addTarget(self,
             action: #selector(AtomicElementViewController.flipCurrentView),
-            for: UIControlEvents.touchDown)
+            for: .touchDown)
         self.navigationItem.setRightBarButton(flipButtonBarItem, animated: true)
     }
     
-    func flipCurrentView() {
+    @objc func flipCurrentView() {
         
         // disable user interaction during the flip animation
         self.view.isUserInteractionEnabled = false
@@ -143,10 +143,10 @@ class AtomicElementViewController: UIViewController {
         
         if self.frontViewIsVisible {
             UIView.setAnimationTransition(.flipFromRight, for: self.flipIndicatorButton, cache: true)
-            self.flipIndicatorButton.setBackgroundImage(self.element?.flipperImageForAtomicElementNavigationItem, for: UIControlState())
+            self.flipIndicatorButton.setBackgroundImage(self.element?.flipperImageForAtomicElementNavigationItem, for: .normal)
         } else {
             UIView.setAnimationTransition(.flipFromLeft, for: self.flipIndicatorButton, cache: true)
-            self.flipIndicatorButton.setBackgroundImage(UIImage(named: "flipper_list_blue.png"), for: UIControlState())
+            self.flipIndicatorButton.setBackgroundImage(UIImage(named: "flipper_list_blue.png"), for: .normal)
             
         }
         UIView.commitAnimations()
@@ -155,7 +155,7 @@ class AtomicElementViewController: UIViewController {
         self.frontViewIsVisible = !self.frontViewIsVisible
     }
     
-    func myTransitionDidStop(_ animationID: String, finished: NSNumber, context: UnsafeMutableRawPointer) {
+    @objc func myTransitionDidStop(_ animationID: String, finished: NSNumber, context: UnsafeMutableRawPointer) {
         // re-enable user interaction when the flip animation is completed
         self.view.isUserInteractionEnabled = true
         self.flipIndicatorButton.isUserInteractionEnabled = true

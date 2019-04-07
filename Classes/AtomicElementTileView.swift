@@ -42,13 +42,13 @@ class AtomicElementTileView: UIView {
         UIColor.white.set()
         
         // draw the element number
-        var font: [String: Any] = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 11)]
+        var font: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 11)]
         var point = CGPoint(x: 3,y: 2)
         String(element.atomicNumber).draw(at: point, withAttributes: font)
         
         // draw the element symbol
-        font = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18)]
-        let stringSize = element.symbol.size(attributes: font)
+        font = [.font: UIFont.boldSystemFont(ofSize: 18)]
+        let stringSize = element.symbol.size(withAttributes: font)
         point = CGPoint(x: (elementSymbolRectangle.size.width-stringSize.width)/2, y: 14.0)
         
         element.symbol.draw(at: point, withAttributes: font)

@@ -39,7 +39,7 @@ class ElementsSortedByStateDataSource: NSObject, UITableViewDataSource, Elements
     }
     
     // atomic state is displayed in a grouped style tableview
-    var tableViewStyle: UITableViewStyle {
+    var tableViewStyle: UITableView.Style {
         
         return .plain
     }

@@ -66,7 +66,7 @@ class PeriodicElements: NSObject {
             self.statesDictionary[anElement.state]?.append(anElement)
             
             // get the element's initial letter
-            let firstLetter = anElement.name.substring(to: anElement.name.characters.index(after: anElement.name.startIndex))
+            let firstLetter = String(anElement.name.first!)
             if self.nameIndexesDictionary[firstLetter] != nil {
                 
                 // if an array already exists in the name index dictionary

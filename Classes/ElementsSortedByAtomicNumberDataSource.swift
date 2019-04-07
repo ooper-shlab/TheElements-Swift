@@ -39,7 +39,7 @@ class ElementsSortedByAtomicNumberDataSource: NSObject, UITableViewDataSource, E
     }
     
     // atomic number is displayed in a plain style tableview
-    var tableViewStyle: UITableViewStyle {
+    var tableViewStyle: UITableView.Style {
         
         return .plain
     }

@@ -26,16 +26,16 @@ class AtomicElementFlippedView: AtomicElementView {
         let buttonFrame = CGRect(x: 10.0, y: 209.0, width: 234.0, height: 37.0)
         
         // create the button
-        self.wikipediaButton = UIButton(type: UIButtonType.roundedRect)
+        self.wikipediaButton = UIButton(type: .roundedRect)
         self.wikipediaButton.frame = buttonFrame
         
-        self.wikipediaButton.setTitle("View at Wikipedia", for: UIControlState())
+        self.wikipediaButton.setTitle("View at Wikipedia", for: .normal)
         
         // Center the text on the button, considering the button's shadow
-        self.wikipediaButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
-        self.wikipediaButton.contentVerticalAlignment = UIControlContentVerticalAlignment.center
+        self.wikipediaButton.contentHorizontalAlignment = .center
+        self.wikipediaButton.contentVerticalAlignment = .center
         
-        self.wikipediaButton.addTarget(self, action: #selector(AtomicElementFlippedView.jumpToWikipedia(_:)), for: UIControlEvents.touchUpInside)
+        self.wikipediaButton.addTarget(self, action: #selector(AtomicElementFlippedView.jumpToWikipedia(_:)), for: .touchUpInside)
         
         self.addSubview(self.wikipediaButton)
     }
@@ -54,7 +54,7 @@ class AtomicElementFlippedView: AtomicElementView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func jumpToWikipedia(_ sender: AnyObject) {
+    @objc func jumpToWikipedia(_ sender: Any) {
         
         // create the string that points to the correct Wikipedia page for the element name
         let wikiPageString = "http://en.wikipedia.org/wiki/\(self.element!.name)"
@@ -77,51 +77,51 @@ class AtomicElementFlippedView: AtomicElementView {
         UIColor.white.set()
         
         // draw the element number
-        var font: [String: AnyObject] = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 32)]
+        var font: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 32)]
         var point = CGPoint(x: 10, y: 5)
         String(element.atomicNumber).draw(at: point, withAttributes: font)
         
         // draw the element symbol
-        var stringSize = element.symbol.size(attributes: font)
+        var stringSize = element.symbol.size(withAttributes: font)
         point = CGPoint(x: (self.bounds.size.width-stringSize.width-10),y: 5)
         element.symbol.draw(at: point, withAttributes: font)
         
         // draw the element name
-        font = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 32)]
-        stringSize = element.name.size(attributes: font)
+        font = [.font: UIFont.boldSystemFont(ofSize: 32)]
+        stringSize = element.name.size(withAttributes: font)
         point = CGPoint(x: (self.bounds.size.width-stringSize.width)/2,y: 50)
         element.name.draw(at: point, withAttributes: font)
         
         let verticalStartingPoint: CGFloat = 95
         
         // draw the element weight
-        font = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14)]
+        font = [.font: UIFont.boldSystemFont(ofSize: 14)]
         let atomicWeightString = "Atomic Weight: \(element.atomicWeight)"
-        stringSize = atomicWeightString.size(attributes: font)
+        stringSize = atomicWeightString.size(withAttributes: font)
         point = CGPoint(x: (self.bounds.size.width-stringSize.width)/2, y: verticalStartingPoint)
         atomicWeightString.draw(at: point, withAttributes: font)
         
         // draw the element state
         let stateString = "State: \(element.state)"
-        stringSize = stateString.size(attributes: font)
+        stringSize = stateString.size(withAttributes: font)
         point = CGPoint(x: (self.bounds.size.width-stringSize.width)/2, y: verticalStartingPoint+20)
         stateString.draw(at: point, withAttributes: font)
         
         // draw the element period
         let periodString = "Period: \(element.period)"
-        stringSize = periodString.size(attributes: font)
+        stringSize = periodString.size(withAttributes: font)
         point = CGPoint(x: (self.bounds.size.width-stringSize.width)/2, y: verticalStartingPoint+40)
         periodString.draw(at: point, withAttributes: font)
         
         // draw the element group
         let groupString = "Group: \(element.group)"
-        stringSize = groupString.size(attributes: font)
+        stringSize = groupString.size(withAttributes: font)
         point = CGPoint(x: (self.bounds.size.width-stringSize.width)/2, y: verticalStartingPoint+60)
         groupString.draw(at: point, withAttributes: font)
         
         // draw the discovery year
         let discoveryYearString = "Discovered: \(element.discoveryYear)"
-        stringSize = discoveryYearString.size(attributes: font)
+        stringSize = discoveryYearString.size(withAttributes: font)
         point = CGPoint(x: (self.bounds.size.width-stringSize.width)/2, y: verticalStartingPoint+80)
         discoveryYearString.draw(at: point, withAttributes: font)
     }

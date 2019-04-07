@@ -40,7 +40,7 @@ class ElementsSortedByNameDataSource: NSObject, UITableViewDataSource, ElementsD
     
     // atomic name is displayed in a plain style tableview
     
-    var tableViewStyle: UITableViewStyle {
+    var tableViewStyle: UITableView.Style {
         
         return .plain
     }

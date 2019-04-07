@@ -89,13 +89,13 @@ class AtomicElement: NSObject {
         UIColor.white.set()
         
         // draw the element number
-        var font: [String: AnyObject] = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 8)]
+        var font: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 8)]
         var point = CGPoint(x: 2, y: 1)
         String(atomicNumber).draw(at: point, withAttributes: font)
         
         // draw the element symbol
-        font = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 13)]
-        let stringSize = self.symbol.size(attributes: font)
+        font = [.font: UIFont.boldSystemFont(ofSize: 13)]
+        let stringSize = self.symbol.size(withAttributes: font)
         point = CGPoint(x: (elementSymbolRectangle.size.width-stringSize.width)/2, y: 10)
         
         self.symbol.draw(at: point, withAttributes: font)

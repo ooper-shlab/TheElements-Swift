@@ -26,7 +26,7 @@ protocol ElementsDataSource: NSObjectProtocol {
     var tabBarImage: UIImage {get}
     
     // this property determines the style of table view displayed
-    var tableViewStyle: UITableViewStyle {get}
+    var tableViewStyle: UITableView.Style {get}
     
     // provides a standardized means of asking for the element at the specific
     // index path, regardless of the sorting or display technique for the specific
